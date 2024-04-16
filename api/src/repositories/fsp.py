@@ -1,7 +1,7 @@
 from sqlalchemy import insert, select
 from sqlalchemy.exc import NoResultFound
 
-from src.model.fsp import Cities, Routes
+from src.models.fsp import Cities, Routes
 from src.utils.repository import SQLAlchemyRepository
 
 

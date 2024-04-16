@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from src.conf import SQLALCHEMY_ASYNC_DATABASE_URL
 from src.db.postgres import Base
-from src.model.fsp import Routes, Cities
+from src.models.fsp import Routes, Cities
 
 config = context.config
 config.set_main_option("sqlalchemy.url", SQLALCHEMY_ASYNC_DATABASE_URL)

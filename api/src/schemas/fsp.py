@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel
 
 
@@ -23,7 +21,8 @@ class RoutesSchema(BaseModel):
 
 class RoutesSchemaAddResult(BaseModel):
     id: int
-    
+
+
 class RoutesSchemaAdd(BaseModel):
     from_city_id: int
     to_city_id: int
@@ -40,7 +39,7 @@ class CitiesSchemaAddResult(BaseModel):
 
 class CitiesSchemaPathResult(BaseModel):
     distance: int
-    targetCity: str
+    target_сity: str
 
 
 class CitiesSchemaPath(BaseModel):

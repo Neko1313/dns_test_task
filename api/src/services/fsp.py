@@ -1,12 +1,19 @@
 import heapq
 from typing import List
 
-from src.schemas.fsp import CitiesSchemaAdd, CitiesSchema, RoutesSchema, RoutesSchemaAdd
+from src.schemas.fsp import (
+    CitiesSchemaAdd,
+    CitiesSchema,
+    RoutesSchema,
+    RoutesSchemaAdd,
+)
 from src.utils.unitofwork import IUnitOfWork
 
 
 class CitiesService:
-    async def add_cities(self, uow: IUnitOfWork, cities: CitiesSchemaAdd) -> None | int:
+    async def add_cities(
+        self, uow: IUnitOfWork, cities: CitiesSchemaAdd
+    ) -> None | int:
         cities_dict = cities.model_dump()
         async with uow:
             cities_id = await uow.cities.add_one(cities_dict)
@@ -18,7 +25,9 @@ class CitiesService:
             cities = await uow.cities.find_all()
             return cities
 
-    async def shortest_path(self, uow: IUnitOfWork, start_city_name: str, end_city_name: str) -> None | int:
+    async def shortest_path(
+        self, uow: IUnitOfWork, start_city_name: str, end_city_name: str
+    ) -> None | int:
         async with uow:
             cities = await uow.cities.find_all()
             routes = await uow.routes.find_all()
@@ -27,9 +36,14 @@ class CitiesService:
             graph = {city.id: [] for city in cities}
 
             for route in routes:
-                graph[route.from_city_id].append((route.to_city_id, route.distance))
+                graph[route.from_city_id].append(
+                    (route.to_city_id, route.distance)
+                )
 
-            if start_city_name not in city_dict or end_city_name not in city_dict:
+            if (
+                start_city_name not in city_dict
+                or end_city_name not in city_dict
+            ):
                 return None
 
             # Инициализация для алгоритма Дейкстры
@@ -64,7 +78,9 @@ class CitiesService:
 
 
 class CitiesService:
-    async def add_cities(self, uow: IUnitOfWork, cities: RoutesSchemaAdd) -> None | int:
+    async def add_cities(
+        self, uow: IUnitOfWork, cities: RoutesSchemaAdd
+    ) -> None | int:
         cities_dict = cities.model_dump()
         async with uow:
             road_id = await uow.routes.add_one(cities_dict)
@@ -74,7 +90,7 @@ class CitiesService:
 
             await uow.commit()
             return road_id
-        
+
     async def get_cities(self, uow: IUnitOfWork) -> List[RoutesSchema]:
         async with uow:
             cities = await uow.routes.find_all()

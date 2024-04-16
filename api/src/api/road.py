@@ -3,7 +3,11 @@ from fastapi import APIRouter, HTTPException
 
 from src.api.dependencies import UOWDep
 from src.services.fsp import CitiesService
-from src.schemas.fsp import RoutesSchema, RoutesSchemaAdd, RoutesSchemaAddResult
+from src.schemas.fsp import (
+    RoutesSchema,
+    RoutesSchemaAdd,
+    RoutesSchemaAddResult,
+)
 
 router = APIRouter(
     prefix="/road",

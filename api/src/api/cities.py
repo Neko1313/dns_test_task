@@ -3,7 +3,13 @@ from fastapi import APIRouter, HTTPException
 
 from src.api.dependencies import UOWDep
 from src.services.fsp import CitiesService
-from src.schemas.fsp import CitiesSchemaAdd, CitiesSchemaAddResult, CitiesSchemaPathResult, CitiesSchemaPath, CitiesSchema
+from src.schemas.fsp import (
+    CitiesSchemaAdd,
+    CitiesSchemaAddResult,
+    CitiesSchemaPathResult,
+    CitiesSchemaPath,
+    CitiesSchema,
+)
 
 router = APIRouter(
     prefix="/cities",
@@ -32,7 +38,7 @@ async def get_count_path(
     """
     Получение пути из города A в город B
     """
-    
+
     distance = await CitiesService().shortest_path(uow, city, to)
     if distance is None:
         raise HTTPException(status_code=404, detail="City or Route not found")
@@ -41,7 +47,7 @@ async def get_count_path(
         city=city,
         result=CitiesSchemaPathResult(
             distance=distance,
-            targetCity=to,
+            target_сity=to,
         ),
     )
 
