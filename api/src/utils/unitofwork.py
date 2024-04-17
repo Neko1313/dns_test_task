@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Type
 
-from src.db.postgres import async_session_maker
-from src.repositories.fsp import CitiesRepository, RoutesRepository
+from db.postgres import async_session_maker
+from repositories.fsp import CitiesRepository, RoutesRepository
 
 
 class IUnitOfWork(ABC):

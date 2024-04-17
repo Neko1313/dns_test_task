@@ -1,8 +1,8 @@
 from sqlalchemy import ForeignKey, String, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.db.postgres import Base
-from src.schemas.fsp import CitiesSchema, RoutesSchema
+from db.postgres import Base
+from schemas.fsp import CitiesSchema, RoutesSchema
 
 
 class Cities(Base):

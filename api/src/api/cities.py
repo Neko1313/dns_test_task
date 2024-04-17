@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
 
-from src.api.dependencies import UOWDep
-from src.services.fsp import CitiesService
-from src.schemas.fsp import (
+from api.dependencies import UOWDep
+from services.fsp import CitiesService
+from schemas.fsp import (
     CitiesSchemaAdd,
     CitiesSchemaAddResult,
     CitiesSchemaPathResult,

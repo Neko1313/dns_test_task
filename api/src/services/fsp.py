@@ -1,13 +1,13 @@
 import heapq
 from typing import List
 
-from src.schemas.fsp import (
+from schemas.fsp import (
     CitiesSchemaAdd,
     CitiesSchema,
     RoutesSchema,
     RoutesSchemaAdd,
 )
-from src.utils.unitofwork import IUnitOfWork
+from utils.unitofwork import IUnitOfWork
 
 
 class CitiesService:
@@ -77,7 +77,7 @@ class CitiesService:
             return None
 
 
-class CitiesService:
+class RoutesService:
     async def add_cities(
         self, uow: IUnitOfWork, cities: RoutesSchemaAdd
     ) -> None | int:

@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
 
-from src.api.dependencies import UOWDep
-from src.services.fsp import CitiesService
-from src.schemas.fsp import (
+from services.fsp import RoutesService
+from api.dependencies import UOWDep
+from schemas.fsp import (
     RoutesSchema,
     RoutesSchemaAdd,
     RoutesSchemaAddResult,
@@ -23,19 +23,19 @@ async def get_road(
     Получение всех маршруты
     """
 
-    road = await CitiesService().get_cities(uow)
+    road = await RoutesService().get_cities(uow)
     return road
 
 
 @router.post("")
 async def add_road(
-    city: RoutesSchemaAdd,
+    rout: RoutesSchemaAdd,
     uow: UOWDep,
 ) -> RoutesSchemaAddResult:
     """
     Добавление нового маршрута
     """
-    road_id = await CitiesService().add_cities(uow, city)
+    road_id = await RoutesService().add_cities(uow, rout)
     if road_id is None:
         raise HTTPException(status_code=404, detail="City not found")
 
